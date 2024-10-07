@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 use Mary\Traits\Toast;
+use Illuminate\Support\Facades\Auth;
 
 class Welcome extends Component
 {
@@ -16,17 +17,24 @@ class Welcome extends Component
 
     public array $sortBy = ['column' => 'name', 'direction' => 'asc'];
 
+    public function mount()
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+    }
+
     // Clear filters
     public function clear(): void
     {
         $this->reset();
-        $this->success('Filters cleared.', position: 'toast-bottom');
+        $this->success('Filter dihapus.', position: 'toast-bottom');
     }
 
     // Delete action
     public function delete($id): void
     {
-        $this->warning("Will delete #$id", 'It is fake.', position: 'toast-bottom');
+        $this->warning("Akan menghapus #$id", 'Ini hanya contoh.', position: 'toast-bottom');
     }
 
     // Table headers
@@ -34,17 +42,17 @@ class Welcome extends Component
     {
         return [
             ['key' => 'id', 'label' => '#', 'class' => 'w-1'],
-            ['key' => 'name', 'label' => 'Name', 'class' => 'w-64'],
-            ['key' => 'age', 'label' => 'Age', 'class' => 'w-20'],
+            ['key' => 'name', 'label' => 'Nama', 'class' => 'w-64'],
+            ['key' => 'age', 'label' => 'Umur', 'class' => 'w-20'],
             ['key' => 'email', 'label' => 'E-mail', 'sortable' => false],
         ];
     }
 
     /**
-     * For demo purpose, this is a static collection.
+     * Untuk tujuan demonstrasi, ini adalah koleksi statis.
      *
-     * On real projects you do it with Eloquent collections.
-     * Please, refer to maryUI docs to see the eloquent examples.
+     * Pada proyek nyata, Anda melakukannya dengan koleksi Eloquent.
+     * Silakan merujuk ke dokumentasi maryUI untuk melihat contoh eloquent.
      */
     public function users(): Collection
     {
