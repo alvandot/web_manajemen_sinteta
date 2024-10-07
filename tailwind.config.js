@@ -11,9 +11,24 @@ export default {
         "./vendor/robsontenorio/mary/src/View/Components/**/*.php"
     ],
     theme: {
-        extend: {},
+        extend: {
+            animation: {
+                gradient: "gradient 10s ease infinite",
+            },
+            keyframes: {
+                gradient: {
+                    "0%": { backgroundPosition: "0% 50%" },
+                    "50%": { backgroundPosition: "100% 50%" },
+                    "100%": { backgroundPosition: "0% 50%" },
+                },
+            },
+        },
     },
-
+    daisyui: {
+        themes: [
+            "bumblebee",
+        ],
+    },
     // Add daisyUI
     plugins: [require("daisyui")]
 }

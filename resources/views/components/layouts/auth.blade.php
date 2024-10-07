@@ -8,18 +8,19 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="min-h-screen font-sans antialiased bg-base-200/50 dark:bg-base-200">
-    <div class="flex items-center justify-center min-h-screen">
-        <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
-            <div class="mb-4 text-center">
+<body class="min-h-screen font-sans antialiased bg-gradient-to-br from-blue-600  to-yellow-300 animate-gradient">
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="w-full max-w-md p-8 rounded-2xl border-2 border-white/20 shadow-2xl backdrop-blur-sm bg-white/10">
+            <div class="mb-6 text-center transform hover:scale-105 transition-transform duration-300">
                 <x-app-brand />
             </div>
 
-
-            {{ $slot }}
+            <div class="transition-all duration-300 hover:translate-y-[-5px]">
+                {{ $slot }}
+            </div>
 
             @if (isset($footer))
-                <div class="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
+                <div class="mt-8 text-center text-sm text-white/80 hover:text-white transition-colors duration-300">
                     {{ $footer }}
                 </div>
             @endif

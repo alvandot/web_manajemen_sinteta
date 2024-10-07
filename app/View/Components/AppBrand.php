@@ -22,22 +22,19 @@ class AppBrand extends Component
     public function render(): View|Closure|string
     {
         return <<<'HTML'
-                <a href="/" wire:navigate>
-                    <!-- Hidden when collapsed -->
-                    <div {{ $attributes->class(["hidden-when-collapsed"]) }}>
-                        <div class="flex items-center gap-2">
-                            <x-icon name="o-square-3-stack-3d" class="w-6 -mb-1 text-purple-500" />
-                            <span class="font-bold text-3xl me-3 bg-gradient-to-r from-purple-500 to-pink-300 bg-clip-text text-transparent ">
-                                app
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Display when collapsed -->
-                    <div class="display-when-collapsed hidden mx-5 mt-4 lg:mb-6 h-[28px]">
-                        <x-icon name="s-square-3-stack-3d" class="w-6 -mb-1 text-purple-500" />
-                    </div>
-                </a>
-            HTML;
+        <a href="/" wire:navigate class="flex items-center justify-center h-full group transition-all duration-300 hover:scale-105">
+            <div {{ $attributes->class(["hidden-when-collapsed"]) }}>
+                <div class="flex items-center justify-center gap-3">
+                    <img src="{{ asset('storage/logo.png') }}" alt="Logo" class="w-16 h-16 animate-pulse" />
+                    <span class="font-extrabold text-5xl bg-gradient-to-b from-blue-200 via-blue-300 to-yellow-400 bg-clip-text text-transparent animate-gradient">
+                        Sinteta
+                    </span>
+                </div>
+            </div>
+            <div class="display-when-collapsed hidden">
+                <img src="{{ asset('storage/logo.png') }}" alt="Logo" class="w-12 h-12 animate-bounce" />
+            </div>
+        </a>
+        HTML;
     }
 }
