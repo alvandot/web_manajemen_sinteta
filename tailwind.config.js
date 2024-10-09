@@ -26,7 +26,7 @@ export default {
     },
     daisyui: {
         themes: [
-            "bumblebee",
+            "pastel",
         ],
     },
     // Add daisyUI

@@ -28,7 +28,7 @@
         <x-slot:sidebar drawer="main-drawer" collapsible class="bg-base-100 lg:bg-inherit">
 
             {{-- BRAND --}}
-            <x-app-brand class="p-5 pt-3" />
+            <x-app-brand class="py-5" />
 
             {{-- MENU --}}
             <x-menu activate-by-route>
@@ -36,20 +36,39 @@
                 {{-- User --}}
                 @if($user = auth()->user())
                     <x-menu-separator />
-
-                    <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
+                    <x-list-item :item="$user" no-separator no-hover>
+                        <x-slot:avatar>
+                            <x-badge value="{{ $user->getRoleNames()->implode(', ') }}" class="badge-primary" />
+                        </x-slot:avatar>
+                        <x-slot:value>
+                            {{ $user->name }}
+                        </x-slot:value>
                         <x-slot:actions>
-                            <x-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="logoff" no-wire-navigate link="/logout" />
+                            <x-button icon="o-x-mark" class="text-red-500" wire:click="logout" spinner tooltip="Logout" />
                         </x-slot:actions>
                     </x-list-item>
 
                     <x-menu-separator />
                 @endif
 
-                <x-menu-item title="Hello" icon="o-sparkles" link="/" />
-                <x-menu-sub title="Settings" icon="o-cog-6-tooth">
-                    <x-menu-item title="Wifi" icon="o-wifi" link="####" />
-                    <x-menu-item title="Archives" icon="o-archive-box" link="####" />
+                <x-menu-item title="Dashboard" icon="o-bars-3" link="/" />
+                <x-menu-sub title="Tentor Bimbel" icon="o-user-group">
+                    <x-menu-item title="Daftar Tentor" icon="o-users" link="####" />
+                    <x-menu-item title="Jadwal Mengajar" icon="o-calendar" link="####" />
+                    <x-menu-item title="Evaluasi Kinerja" icon="o-chart-bar" link="####" />
+                    <x-menu-item title="Materi Ajar" icon="o-book-open" link="####" />
+                    <x-menu-item title="Absensi Tentor" icon="o-document-text" link="####" />
+                </x-menu-sub>
+                <x-menu-sub title="Siswa Bimbel" icon="o-academic-cap">
+                    <x-menu-item title="Daftar Siswa" icon="o-users" link="####" />
+                    <x-menu-item title="Jadwal Belajar" icon="o-calendar" link="####" />
+                    <x-menu-item title="Absensi Siswa" icon="o-clipboard-document-list" link="####" />
+                    <x-menu-item title="Daftar Sekolah" icon="o-chat-bubble-left-right" link="####" />
+                </x-menu-sub>
+                <x-menu-sub title="Akademik" icon="o-academic-cap">
+                    <x-menu-item title="Mata Pelajaran" icon="o-clipboard-document-list" link="####" />
+                    <x-menu-item title="Jadwal Bimbingan" icon="o-calendar" link="####" />
+                    <x-menu-item title="Evaluasi Belajar" icon="o-chart-bar" link="####" />
                 </x-menu-sub>
             </x-menu>
         </x-slot:sidebar>

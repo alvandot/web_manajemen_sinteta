@@ -22,7 +22,7 @@ class AppBrand extends Component
     public function render(): View|Closure|string
     {
         return <<<'HTML'
-        <a href="/" wire:navigate class="flex items-center justify-center h-full group transition-all duration-300 hover:scale-105">
+        <a href="/" wire:navigate class="flex items-center justify-center transition-all duration-300 hover:scale-105">
             <div {{ $attributes->class(["hidden-when-collapsed"]) }}>
                 <div class="flex items-center justify-center gap-3">
                     <img src="{{ asset('storage/logo.png') }}" alt="Logo" class="w-16 h-16 animate-pulse" />

@@ -5,9 +5,11 @@ namespace App\Livewire\Auth;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Mary\Traits\Toast;
 
 class Login extends Component
 {
+    use Toast;
     public $email;
     public $password;
 
@@ -26,12 +28,23 @@ class Login extends Component
         if (Auth::attempt($this->only('email', 'password'))) {
             request()->session()->regenerate();
 
-            $this->success('Login berhasil', position: 'toast-bottom');
-            return redirect()->route('home');
+
+            // Toast menarik
+            $this->toast(
+                type: 'success',
+                title: 'Selamat Datang!',
+                description: 'Anda berhasil masuk ke akun Anda.',
+                position: 'toast-middle toast-center',
+                icon: 'o-check-circle',
+                css: 'alert-success font-bold',
+                redirectTo: route('home'),
+                timeout: 5000
+            );
         }
 
         $this->addError('email', 'Email atau password salah');
         $this->addError('password', 'Email atau password salah');
+
     }
 
     public function mount()
